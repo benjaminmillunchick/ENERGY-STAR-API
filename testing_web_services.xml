@@ -1,0 +1,90 @@
+<!-- Following tutorial here: https://www.youtube.com/watch?v=5ruR2Xz1SeE -->
+<!-- using RESTclient extention in Firefox for development -->
+
+<!-- This section can be used to document and organize your usernames and passwords necessary for authentication -->
+username: SampleUser123
+password: SamplePassword123
+customer_username: SampleCustomerUser123
+customer_password: SampleCustomerPassword123
+
+<!-- This section can be used to document and organize important system generated unique identifiers -->
+accountId: 378825             <!--Your account's acountId-->
+customer_accountId: 378826    <!--Your customer's acountId-->
+propertyId:
+propertyUseId:
+energy_meterId:
+water_meterId:
+waist_meterId:
+
+<!-- Testing part A: Creating an Account -->
+     <!-- Step 1: Creat an Accoint-->
+POST https://portfoliomanager.energystar.gov/wstest/account
+Content-Type: application/xml
+<?xml version="1.0" encoding="UTF-8"?>
+<account>
+     <username>SampleUser123</username>
+     <password>SamplePassword123</password>
+     <webserviceUser>true</webserviceUser>
+     <searchable>true</searchable>
+     <billboardMetric>score</billboardMetric>
+     <contact>
+          <firstName>John</firstName>
+          <lastName>Doe</lastName>
+          <address address1="123 Main St" city="Arlington" state="VA" postalCode="22201" country="US"/>
+          <email>john_doe@acme.com</email>
+          <jobTitle>Building Administrator Data Exchange User</jobTitle>
+          <phone>703-555-2121</phone>
+     </contact>
+     <organization name="ACME Corporation">
+          <primaryBusiness>Other</primaryBusiness>
+          <otherBusinessDescription>other</otherBusinessDescription>
+          <energyStarPartner>true</energyStarPartner>
+          <energyStarPartnerType>Service and Product Providers</energyStarPartnerType>
+     </organization>
+</account>
+<!-- Save and store the system generated "accountId" for your account to use in subsiquent calls -->
+
+     <!-- Step 2: Managing your Account Settings -->
+PUT https://portfoliomanager.energystar.gov/wstest/dataExchangeSettings
+Content-Type: application/xml
+Authorization: Basic <!-- Authorization is just username as password-->
+<dataExchangeSettings>
+     <termsOfUse>
+          <text>Terms and Conditions: You may use the ACME's services to
+          interface with EPA's Data Exchange Platform only if you are a
+          customer of ACME and agree to the detailed Terms and Conditions
+          set forth on our company's website.</text>
+     </termsOfUse>
+     <supportedMeterTypes>
+          <meterType>Electric</meterType> <!-- can change or add meter types. Find in schema-->
+          <meterType>Municipally Supplied Potable Water - Indoor</meterType>
+          <meterType>Disposed - Trash</meterType>
+     </supportedMeterTypes>
+</dataExchangeSettings>
+
+<!-- Testing Part B: Creating Customer Accoints, Properties, and Metrics -->
+     <!-- Step 3: Create Customer Account -->
+POST https://portfoliomanager.energystar.gov/wstest/customer
+Content-Type: application/xml
+Authorization: Basic
+<account>
+     <username>SampleCustomerUser123</username>
+     <password>SampleCustomerPassword123</password>
+     <webserviceUser>true</webserviceUser>
+     <searchable>false</searchable>
+     <contact>
+          <firstName>Jack</firstName>
+          <lastName>Brown</lastName>
+          <address address1="123 South St" city="Edmonton"
+          state="AB" postalCode="T5G 2S7" country="CA"/>
+          <email>jack_brown@acme.com</email>
+          <jobTitle>Building Administrator Data Exchange User</jobTitle>
+          <phone>703-555-2121</phone>
+     </contact>
+     <organization name="ACME Corporation">
+          <primaryBusiness>Other</primaryBusiness>
+          <otherBusinessDescription>other</otherBusinessDescription>
+          <energyStarPartner>true</energyStarPartner>
+          <energyStarPartnerType>Service and Product Providers</energyStarPartnerType>
+     </organization>
+</account>
