@@ -191,6 +191,7 @@ dmypy.json
 # Ignore all .pyc files
 *.pyc
 testing_web_services.xml
+secrets.py
 
 # Ignore these folders
 .git

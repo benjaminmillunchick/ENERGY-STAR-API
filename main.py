@@ -1,18 +1,18 @@
+# file used to house secrests locally before I fiugre out how to do that for real
+from secrets import secrets
+
 import requests
 
 # initialize basic authentication
-username = ""
-password = ""
-customer_username = ""
-customer_password = ""
+username, password, customer_username, customer_password = secrets()
 
-accountId = ""
-customer_accountId = ""
-propertyId = ""
-propertyUseId = ""
-energy_meterId = ""
-water_meterId = ""
-waist_meterId = ""
+accountId = 378825
+customer_accountId = 378826
+propertyId = 17879994
+propertyUseId = 11362107
+energy_meterId = 21655430
+water_meterId = 21655459
+waist_meterId = 21655488
 
 base_url = "https://portfoliomanager.energystar.gov/wstest/"
 header = {"Content-Type": "application/xml"}
@@ -84,3 +84,29 @@ def xml_create_account(
     assert response.status_code == 200
     assert response.headers["Content-Type"] == "application/xml"
 
+
+def xml_get_properties_meter():
+    """
+    This web service returns a list of meters that are associated to a specific property.
+    """
+    response = requests.get(
+        "{}/association/property/{}/meter".format(base_url, propertyId),
+        headers=header,
+        auth=basic,
+    )
+    assert response.status_code == 200
+    return response.text
+
+
+def xml_get_meter_data():
+    """
+    This web service retrieves information for a specific meter. The meter must already be shared with you.
+    """
+    response = requests.get(
+        "{}/meter/{}".format(base_url, energy_meterId), headers=header, auth=basic,
+    )
+    assert response.status_code == 200
+    return response.text
+
+
+print(xml_get_meter_data())
