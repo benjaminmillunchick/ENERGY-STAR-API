@@ -197,3 +197,4 @@ secrets.py
 .git
 .pytest_cache
 portfoliomanager-schemas-17.0
+sample_csv_files
