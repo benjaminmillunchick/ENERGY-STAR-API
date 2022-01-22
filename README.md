@@ -15,9 +15,6 @@ Development of this tool must be done in the test environemt. Once testing is do
 
 [ENERGY STAR API Documentation ENERGY STAR Portfolio Manager Documentation](https://portfoliomanager.energystar.gov/webservices/home)
 
-** to be removed **
-- this Github project has similar functionality to what we need to build. GitHub linked [here](https://github.com/BenchmarkDC/ENERGY-STAR-Web-Services)
-
 - Making API calls with XML body linked [here](https://www.ontestautomation.com/writing-tests-for-restful-apis-in-python-using-requests-part-3-working-with-xml/)
 
 
