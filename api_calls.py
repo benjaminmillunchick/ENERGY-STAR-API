@@ -1,7 +1,7 @@
 # file used to house secrests locally before I fiugre out how to do that for real
 from secrets import secrets
-
 import requests
+import regex as re
 
 # initialize basic authentication
 username, password, customer_username, customer_password = secrets()
@@ -14,7 +14,11 @@ energy_meterId = 21655430
 water_meterId = 21655459
 waist_meterId = 21655488
 
+# test URL
 base_url = "https://portfoliomanager.energystar.gov/wstest/"
+# production URL
+# base_url = "https://portfoliomanager.energystar.gov/ws/"
+
 header = {"Content-Type": "application/xml"}
 
 basic = requests.auth.HTTPBasicAuth(username, password)
@@ -25,7 +29,7 @@ def xml_get_properties_meter(property_id: int):
     This web service returns a list of meters that are associated to a specific property.
 
     Paramater: property_id
-    Returns: xml text, list of meters associated to a specific property
+    Returns: list of meterIds associated with a property
     """
     response = requests.get(
         "{}/association/property/{}/meter".format(base_url, property_id),
@@ -33,7 +37,12 @@ def xml_get_properties_meter(property_id: int):
         auth=basic,
     )
     assert response.status_code == 200
-    return response.text
+
+    text = response.text
+
+    meterIds = re.findall(r"(?><meterId>)(.*)(?><\/meterId>)", text)
+
+    return meterIds
 
 
 def xml_get_meter(meter_id: int):
@@ -41,13 +50,19 @@ def xml_get_meter(meter_id: int):
     This web service retrieves information for a specific meter. The meter must already be shared with you.
 
     Paramater: meter_id
-    ReturnsL xml text, iformation on a specific meter
+    ReturnsL meter # for a meterId
     """
     response = requests.get(
         "{}/meter/{}".format(base_url, meter_id), headers=header, auth=basic,
     )
-    assert response.status_code == 200
-    return response.text
+    code = response.status_code
+    assert code == 200
+
+    text = response.text
+
+    meter_number = re.finall(r"(?><name>)(.*)(?><\/name>)", text)[0]
+
+    return meter_number
 
 
 def xml_get_meter_consumtion_data(meter_id: int):
