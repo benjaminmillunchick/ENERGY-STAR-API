@@ -13,7 +13,7 @@ def run():
     meter_data_dict = read_data("sample_csv_files/St Marys Student Parish.xlsx")
 
     # get propertyId from jsut unsername and password
-    # https://portfoliomanager.energystar.gov/webservices/home/test/api/account/account/get
+    propertyId = api_calls.xml_get_account()
 
     # get list of all meterIds
     # returns list of meterIds

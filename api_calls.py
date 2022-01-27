@@ -24,6 +24,23 @@ header = {"Content-Type": "application/xml"}
 basic = requests.auth.HTTPBasicAuth(username, password)
 
 
+def xml_get_account():
+    """
+    This web service retrieves your account information that includes your username, password, and contact information.
+
+    Parameters: None
+    Returns: propertyId
+    """
+    response = requests.get("{}account".format(base_url), headers=header, auth=basic,)
+    assert response.status_code == 200
+
+    text = response.text
+
+    propertyId = re.findall(r"(?><id>)(.*)(?><\/id>)", text)[0]
+
+    return propertyId
+
+
 def xml_get_properties_meter(property_id: int):
     """
     This web service returns a list of meters that are associated to a specific property.
