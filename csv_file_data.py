@@ -22,10 +22,10 @@ def format(row):
 
     xml = """
     <meterConsumption estimatedValue="{}">
-              <cost>{}</cost>
-              <startDate>{}</startDate>
-              <endDate>{}</endDate>
-              <usage>{}</usage>
+            <cost>{}</cost>
+            <startDate>{}</startDate>
+            <endDate>{}</endDate>
+            <usage>{}</usage>
     </meterConsumption>
     """.format(
         estimation, cost, start_date, end_date, usage
@@ -44,9 +44,6 @@ def read_data(data_file: str):
     df = pd.read_excel(data_file)
     # delete extra columns
     df = df[df.filter(regex="^(?!Unnamed)").columns]
-
-    # for testing
-    df = df.head()
 
     r_dict = {}
 

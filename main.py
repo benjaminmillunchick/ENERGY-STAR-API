@@ -10,6 +10,8 @@ import secrets
 # password = "?"
 username, password, customer_username, customer_password = secrets()
 
+data = "sample_csv_files/St Marys Student Parish.xlsx"
+
 # send data to energy star
-send_to_espm.run(username, password)
+send_to_espm.run(data, username, password)
 

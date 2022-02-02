@@ -4,6 +4,7 @@
 
 * [Overview](#overview)
 * [Resources](#resources)
+* [Tests](#tests)
 
 ## [Overview](#overview)
 
@@ -21,3 +22,17 @@ Development of this tool must be done in the test environemt. Once testing is do
 - Making API calls with XML body linked [here](https://www.ontestautomation.com/writing-tests-for-restful-apis-in-python-using-requests-part-3-working-with-xml/)
 
 
+## [Tests](#tests)
+```bash
+$ pytest
+```
+
+_Code coverage coming soon_
+To view code coverage execute the following command:
+```bash
+$ pytest --cov=main tests/
+```
+If Coverage Gutters are installed to view coverage within the python file, exicute the following command:
+```bash
+$ pytest tests --cov-report xml:cov.xml --cov main
+```

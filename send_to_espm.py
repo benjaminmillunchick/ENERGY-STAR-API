@@ -3,12 +3,12 @@ import api_calls
 import requests
 
 
-def run(username: str, password: str):
+def run(data: str, username: str, password: str):
 
     auth = requests.auth.HTTPBasicAuth(username, password)
     # read excel file and format data into xml
     # {Meter #: xml meter data}
-    meter_data_dict = read_data("sample_csv_files/St Marys Student Parish.xlsx")
+    meter_data_dict = read_data(data)
 
     # get accountId from jsut unsername and password
     accountId = api_calls.xml_get_account(auth)
