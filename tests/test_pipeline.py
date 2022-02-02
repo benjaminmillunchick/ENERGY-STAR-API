@@ -1,7 +1,16 @@
 # import main
-import csv_file_data
+import main
 import pandas as pd
 from datetime import datetime
+
+accountId = 378825
+customer_accountId = 378826
+propertyId = 17879994
+propertyUseId = 11362107
+energy_meterId = 21655430
+water_meterId = 21655459
+waist_meterId = 21655488
+
 
 # testing csv_file_data.py file
 def test_format():
@@ -72,9 +81,9 @@ def test_format():
         " ", ""
     )
 
-    result1 = csv_file_data.format(mock1)
-    result2 = csv_file_data.format(mock2)
-    result3 = csv_file_data.format(mock3)
+    result1 = main.format(mock1)
+    result2 = main.format(mock2)
+    result3 = main.format(mock3)
 
     assert result1 == expected_result1
     assert result2 == expected_result2
@@ -101,6 +110,6 @@ def test_read_data():
     }
     # check formatting is as expexted
     # we know that format works as expected as it is tested, but think of two variations at least.
-    result1 = csv_file_data.read_data(mock_data1)
+    result1 = main.read_data(mock_data1)
 
     assert result1 == expected_result1

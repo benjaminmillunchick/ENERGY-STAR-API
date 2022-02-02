@@ -27,7 +27,6 @@ Development of this tool must be done in the test environemt. Once testing is do
 $ pytest
 ```
 
-_Code coverage coming soon_
 To view code coverage execute the following command:
 ```bash
 $ pytest --cov=main tests/
