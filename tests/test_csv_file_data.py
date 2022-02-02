@@ -1,9 +1,7 @@
 # import main
-import pandas as pd
 import csv_file_data
+import pandas as pd
 from datetime import datetime
-from unittest import mock
-from unittest.mock import MagicMock
 
 # testing csv_file_data.py file
 def test_format():
@@ -27,7 +25,9 @@ def test_format():
                 <endDate>2017-12-09</endDate>
                 <usage>0</usage>
         </meterConsumption>    
-    """
+    """.replace(
+        " ", ""
+    )
     # estimate
     mock_data2 = {
         "Actual Or Estimated": "Estimated",
@@ -46,7 +46,9 @@ def test_format():
                 <endDate>2017-12-09</endDate>
                 <usage>0</usage>
         </meterConsumption>    
-    """
+    """.replace(
+        " ", ""
+    )
 
     # what if dates arent formatted as we expect
     mock_data3 = {
@@ -66,23 +68,39 @@ def test_format():
                 <endDate>2017-12-09</endDate>
                 <usage>0</usage>
         </meterConsumption>    
-    """
+    """.replace(
+        " ", ""
+    )
 
     result1 = csv_file_data.format(mock1)
     result2 = csv_file_data.format(mock2)
     result3 = csv_file_data.format(mock3)
 
-    assert result1.replace(" ", "") == expected_result1.replace(" ", "")
-    assert result2.replace(" ", "") == expected_result2.replace(" ", "")
-    assert result3.replace(" ", "") == expected_result3.replace(" ", "")
+    assert result1 == expected_result1
+    assert result2 == expected_result2
+    assert result3 == expected_result3
 
 
-# @mock.patch("csv_file_data.read_data.df")
-# def test_read_data():
-#     # mock the data
-#     # check formatting is as expexted
-#     mock_df = MagicMock("MOCK")
-#     # we know that format works as expected as it is tested, but think of two variations at least.
+def test_read_data():
+    mock_data1 = "tests/test_data.xlsx"
+    expected_result1 = {
+        100000000: """
+        <meterData>
 
-#     csv_file_data.read_data("")
+            <meterConsumption estimatedValue="true">
+                <cost>100</cost>
+                <startDate>2021-01-01</startDate>
+                <endDate>2021-02-01</endDate>
+                <usage>100</usage>
+            </meterConsumption>
 
+        </meterData>  
+    """.replace(
+            " ", ""
+        )
+    }
+    # check formatting is as expexted
+    # we know that format works as expected as it is tested, but think of two variations at least.
+    result1 = csv_file_data.read_data(mock_data1)
+
+    assert result1 == expected_result1

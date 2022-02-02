@@ -29,19 +29,21 @@ def format(row):
     </meterConsumption>
     """.format(
         estimation, cost, start_date, end_date, usage
+    ).replace(
+        " ", ""
     )
 
     return xml
 
 
-def read_data(data_file: str):
+def read_data(excel_file: str):
     """
     Reads excel data and formats it for API post
 
     Paramiters: path to excel file
     Returns: dictionary - {Meter #: xml meter data} 
     """
-    df = pd.read_excel(data_file)
+    df = pd.read_excel(excel_file)
     # delete extra columns
     df = df[df.filter(regex="^(?!Unnamed)").columns]
 
@@ -63,6 +65,8 @@ def read_data(data_file: str):
         </meterData>
         """.format(
             data
+        ).replace(
+            " ", ""
         )
 
         r_dict[meter] = xml
