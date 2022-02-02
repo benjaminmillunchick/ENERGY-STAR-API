@@ -193,6 +193,7 @@ dmypy.json
 testing_web_services.xml
 secrets.py
 cov.xml
+.vscode
 
 # Ignore these folders
 .git
