@@ -161,7 +161,7 @@ def xml_get_meter(meter_id: int, authorization):
     This web service retrieves information for a specific meter. The meter must already be shared with you.
 
     Paramater: meter_id, basic authorization
-    ReturnsL meter # for a meterId
+    Returns: meter # for a meterId
     """
     response = requests.get(
         "{}/meter/{}".format(base_url, meter_id), headers=header, auth=authorization,
@@ -171,7 +171,7 @@ def xml_get_meter(meter_id: int, authorization):
 
     text = response.text
 
-    meter_number = re.finall(r"(?><name>)(.*)(?><\/name>)", text)[0]
+    meter_number = re.findall(r"(?><name>)(.*)(?><\/name>)", text)[0]
 
     return meter_number
 
