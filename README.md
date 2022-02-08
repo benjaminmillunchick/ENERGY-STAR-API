@@ -3,30 +3,36 @@
 ## Table of Contents 
 
 * [Overview](#overview)
-* [Resources](#resources)
-* [Tests](#tests)
+* [Development](#dev)
+    * [Test Environment](#test_env)
+    * [Live Environment](#live_env)
+    * [Tests](#tests)
+
 
 ## [Overview](#overview)
 
-This project houses the process of automated upload of CSV files to [ENERGY STAR portfolio managager](https://portfoliomanager.energystar.gov). This data will be used for benchmarking buildoing energy usage. ENERY STAR does accept direct CSV upload. However, particular formatting is needed. 
+This project houses the process of automated upload of Excel files to [ENERGY STAR portfolio managager](https://portfoliomanager.energystar.gov). This data will be used for benchmarking building energy usage. ENERY STAR does accept direct CSV upload. However, particular formatting is needed. 
 
-- MVP: get excel file, read it and format it, send to energy star.
-- Questions: what authentication and identificaitons are needed? Can I pull meterId with just Meter #?
-
-## [Resources](#resources)
-
+### [Test Environment](#test_env)
 Development of this tool must be done in the test environemt. Once testing is done, submit registration request in the Software Development tab under Account Settings in your Portfolio Manager account. More instructions can be found on [ENERGY STAR](https://www.energystar.gov/buildings/resources_audience/service_product_providers/existing_buildings/benchmarking_clients//use_pm_web_services)
 
-[ENERGY STAR API Documentation ENERGY STAR Portfolio Manager Documentation](https://portfoliomanager.energystar.gov/webservices/home)
+The base URL for the test environment is `https://portfoliomanager.energystar.gov/wstest/`. This can be found and changed on line 88 of main.py file.
 
-- Making API calls with XML body linked [here](https://www.ontestautomation.com/writing-tests-for-restful-apis-in-python-using-requests-part-3-working-with-xml/)
+Documentation for ENERGY STAR test environment can be found on [ENERGY STAR](https://portfoliomanager.energystar.gov/webservices/home/test/api;jsessionid=31B86EFB940286445D37997C8E98016C)
 
+### [Live Environment](#live_env)
+Once registration request has been approved in your Portfolio Manager account you are now able to put your tool into production. 
+More instructions for this process can be found on [ENERGY STAR](https://www.energystar.gov/buildings/resources_audience/service_product_providers/existing_buildings/benchmarking_clients//use_pm_web_services)
 
-## [Tests](#tests)
+The base URL for the test environment is `https://portfoliomanager.energystar.gov/ws/`. This can be found and changed on line 88 of main.py file.
+
+Documentation for ENERGY STAR live environment can be found on [ENERGY STAR](https://portfoliomanager.energystar.gov/webservices/home/api)
+
+### [Tests](#tests)
+Tests can be executed by installing all requirements  and then executing the tests with pytest like so:
 ```bash
 $ pytest
 ```
-
 To view code coverage execute the following command:
 ```bash
 $ pytest --cov=main tests/

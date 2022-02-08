@@ -86,8 +86,6 @@ def read_data(excel_file: str):
 
 
 base_url = "https://portfoliomanager.energystar.gov/wstest/"
-# production URL
-# base_url = "https://portfoliomanager.energystar.gov/ws/"
 
 header = {"Content-Type": "application/xml"}
 
