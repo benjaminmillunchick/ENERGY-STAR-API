@@ -2,9 +2,6 @@
 import main
 import pandas as pd
 from datetime import datetime
-import secrets
-
-from requests.auth import HTTPBasicAuth
 
 # testing csv_file_data.py file
 def test_format():
@@ -107,58 +104,3 @@ def test_read_data():
 
     assert result1 == expected_result1
 
-def test_xml_get_account():
-    mock_username, mock_password, _, _ = secrets.secrets()
-    basic = HTTPBasicAuth(mock_username, mock_password)
-
-    expected_result = "378825"
-
-    result  = main.xml_get_account(basic)
-
-    assert expected_result == result
-
-def test_xml_get_properties():
-    mock_username, mock_password, _, _ = secrets.secrets()
-    basic = HTTPBasicAuth(mock_username, mock_password)
-
-    expected_result = ["17879994"]
-
-    result  = main.xml_get_properties(378825, basic)
-
-    assert expected_result == result
-
-def test_xml_get_properties_meter():
-    mock_username, mock_password, _, _ = secrets.secrets()
-    basic = HTTPBasicAuth(mock_username, mock_password)
-
-    expected_result = ["21655430", "21655459", "21655488"]
-
-    result = main.xml_get_properties_meter(17879994, basic)
-
-    assert expected_result == expected_result
-
-def test_xml_get_meter():
-    mock_username, mock_password, _, _ = secrets.secrets()
-    basic = HTTPBasicAuth(mock_username, mock_password)
-
-
-    expected_result1 = "Electric Main Meter"
-    expected_result2 = "Potable Indoor Meter"
-    expected_result3 = "WasteEstimation"
-
-
-    result1  = main.xml_get_meter(21655430, basic)
-    result2  = main.xml_get_meter(21655459, basic)
-    result3  = main.xml_get_meter(21655488, basic)
-
-    assert expected_result1 == result1  
-    assert expected_result2 == result2 
-    assert expected_result3 == result3 
-
-def test_xml_get_meter_consumtion_data():
-    mock_username, mock_password, _, _ = secrets.secrets()
-    basic = HTTPBasicAuth(mock_username, mock_password)
-
-    result = main.xml_get_meter_consumtion_data(21655430, basic)
-
-    assert type(result) == str
