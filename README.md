@@ -8,13 +8,14 @@
     * [Test Environment](#test_env)
     * [Live Environment](#live_env)
     * [Tests](#tests)
-    * [Deploy](#deploy)
-
-instructions for how to run this
 
 ## [Overview](#overview)
 
-This project houses the process of automated upload of Excel files to [ENERGY STAR portfolio managager](https://portfoliomanager.energystar.gov). This data will be used for benchmarking building energy usage. ENERY STAR does accept direct CSV upload. However, particular formatting is needed. 
+This project houses a framework for the process of automated upload of Excel files to [ENERGY STAR portfolio managager](https://portfoliomanager.energystar.gov). The Python tool is to be integrated into a website. However, this project was developed without develper credentials in ESPM, so refined implimentation is needed.
+
+This data will be used for benchmarking building energy usage. ENERY STAR does accept direct CSV upload. However, particular formatting is needed. 
+
+This tool is to be integrated with a website, and because of permission limitations this project is more of a proof of concept. 
 
 ## [Development](#dev)
 
@@ -58,8 +59,10 @@ To create a test account follow these simple steps using an REST client:
     </organization>
 </account>
 ```
-Put your test account username and password on lines _____________ of main.py
-RUN GET TO SEE ACCOUNT ID AND CHANGE IN TESTS line 114
+
+Be sure to keep track of username and password.
+
+For both test and live environments, a secrets manager like [Google Cloud Secrets Manager](https://cloud.google.com/secret-manager) is recomended.
 
 The information in your test account can be created using the following steps:
 __Note:__ if this information isn't exactly what is seen below, tests may not pass.
@@ -168,5 +171,3 @@ __Error codes:__
 * 415 - You did not specify a supported content/media type with your request. * Currently only "application/xml" is supported.
 * 500 - An internal server error has occurred. Please try again.
 * 502 - Web services are unavailable due to system maintenance. Please try again.
-
-### [Deploy](#deploy)
