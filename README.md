@@ -13,7 +13,7 @@
 
 This project houses a framework for the process of automated upload of Excel files to [ENERGY STAR portfolio managager](https://portfoliomanager.energystar.gov). The Python tool is to be integrated into a website. However, this project was developed without develper credentials in ESPM, so refined implimentation is needed.
 
-This data will be used for benchmarking building energy usage. ENERY STAR does accept direct CSV upload. However, particular formatting is needed. 
+This data will be used for benchmarking building energy usage. ENERY STAR does accept direct CSV upload. However, particular Excel formatting is needed. 
 
 This tool is to be integrated with a website, and because of permission limitations this project is more of a proof of concept. 
 
